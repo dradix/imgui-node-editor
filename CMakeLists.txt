@@ -1,13 +1,5 @@
-if (TARGET imgui_node_editor)
-    return()
-endif()
+project(imgui_node_editor CXX)
 
-#set(_imgui_node_editor_SourceDir ${IMGUI_NODE_EDITOR_ROOT_DIR})
-#set(_imgui_node_editor_BinaryDir ${CMAKE_BINARY_DIR}/NodeEditor)
-
-#add_subdirectory(${_imgui_node_editor_SourceDir} ${_imgui_node_editor_BinaryDir})
-
-find_package(imgui REQUIRED)
 
 set(_imgui_node_editor_Sources
     ${IMGUI_NODE_EDITOR_ROOT_DIR}/crude_json.cpp
@@ -36,14 +28,7 @@ target_include_directories(imgui_node_editor PUBLIC
     ${IMGUI_NODE_EDITOR_ROOT_DIR}
 )
 
-target_link_libraries(imgui_node_editor PUBLIC imgui)
+target_link_libraries(imgui_node_editor PUBLIC  Diligent-Imgui)
 
 source_group(TREE ${IMGUI_NODE_EDITOR_ROOT_DIR} FILES ${_imgui_node_editor_Sources})
 
-include(${CMAKE_ROOT}/Modules/FindPackageHandleStandardArgs.cmake)
-
-find_package_handle_standard_args(
-    imgui_node_editor
-    REQUIRED_VARS
-        IMGUI_NODE_EDITOR_ROOT_DIR
-)
